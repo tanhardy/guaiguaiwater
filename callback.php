@@ -12,3 +12,5 @@
 //
 // // Failed
 // echo $response->getHTTPStatus.' '.$response->getRawBody();
+$message=$_POST;
+echo "$message";
