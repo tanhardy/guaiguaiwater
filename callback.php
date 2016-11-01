@@ -12,5 +12,6 @@
 //
 // // Failed
 // echo $response->getHTTPStatus.' '.$response->getRawBody();
-$message=$_POST;
-echo "$message";
+$message=var_dump($_POST);
+
+file_put_contents("debug.txt", file_get_contents("$message"),FILE_APPEND);
