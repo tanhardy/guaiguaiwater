@@ -12,6 +12,7 @@
 
 // // Failed
 // echo $response->getHTTPStatus.' '.$response->getRawBody();
-$message = var_dump($_POST);
 
-file_put_contents("debug.txt", file_get_contents("php://input"),FILE_APPEND);
+$content = "this is just a test.";
+
+file_put_contents("debug.txt", $content,FILE_APPEND);
