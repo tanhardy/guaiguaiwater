@@ -11,15 +11,15 @@ $replytoken = $jsonobject->events[0]->replyToken;
 $get_text = $jsonobject->events[0]->message->text;
 
 if ($get_text == '機器人回報!') {
-    $str = file_get_contents('report.txt');//一堆字
-    $textarr=explode('\n',$str);//切割每一筆留言
+    $str = file_get_contents('report.txt'); //一堆字
+    $textarr = explode("\n", $str); //切割每一筆留言
     foreach ($textarr as $key => $value) {
         file_put_contents('debug.txt', $value, FILE_APPEND);
         $response = $bot->replyText($replytoken, $value);
     }
 
     // file_put_contents('report.txt', '');
-} elseif (preg_match('/^[0-9]{0,2}\s.*/', $get_text,$matches)) {  //頭匹配符ex:兩個數字開頭加上一個空白
+} elseif (preg_match('/^[0-9]{0,2}\s.*/', $get_text, $matches)) {  //頭匹配符ex:兩個數字開頭加上一個空白
     file_put_contents('report.txt', $get_text, FILE_APPEND);
     file_put_contents('report.txt', "\n", FILE_APPEND);
 }
