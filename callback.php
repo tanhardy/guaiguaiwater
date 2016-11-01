@@ -10,9 +10,10 @@ $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => 'ee39d46841657ce270c34
 $replytoken = $jsonobject->events[0]->replyToken;
 $get_text = $jsonobject->events[0]->message->text;
 
-if ($get_text == '機器人回報') {
+if ($get_text == '機器人回報!') {
     $response_text = file_get_contents('report.txt');
-} else {
+    file_put_contents('report.txt', '');
+} elseif(preg_match('^!',$get_text)) {  //頭匹配符!
     file_put_contents('report.txt', $get_text, FILE_APPEND);
     file_put_contents('report.txt', "\n", FILE_APPEND);
 }
