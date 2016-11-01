@@ -16,4 +16,4 @@ if ($get_text == '機器人回報') {
     file_put_contents('report.txt', $get_text, FILE_APPEND);
 }
 
-// $response = $bot->replyText($replytoken, $response_text);
+$response = $bot->replyText($replytoken, $response_text);
