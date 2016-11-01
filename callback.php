@@ -14,10 +14,17 @@ if ($get_text == '機器人回報!') {
     $manystr = file_get_contents('report.txt'); //一堆字
     $sort_str = ajsort($manystr);
     $response = $bot->replyText($replytoken, $sort_str);
-} elseif (preg_match('/^[0-9]{0,2}\s.*/', $get_text, $matches)) {  //頭匹配符ex:兩個數字開頭加上一個空白
-    file_put_contents('report.txt', $get_text, FILE_APPEND);
-    file_put_contents('report.txt', "\n", FILE_APPEND);
 }
+elseif ($get_text == '回報囉') {
+    for ($i=52; $i < 70; $i++) {
+        $value.="$i:\n";
+    }
+    $response = $bot->replyText($replytoken, $value);
+}
+// elseif (preg_match('/^[0-9]{0,2}\s.*/', $get_text, $matches)) {  //頭匹配符ex:兩個數字開頭加上一個空白
+//     file_put_contents('report.txt', $get_text, FILE_APPEND);
+//     file_put_contents('report.txt', "\n", FILE_APPEND);
+// }
 function ajsort($str)
 {
     $textarr = explode("\n", $str);
