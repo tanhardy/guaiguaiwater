@@ -11,8 +11,8 @@ $replytoken = $jsonobject->events[0]->replyToken;
 $get_text = $jsonobject->events[0]->message->text;
 
 if ($get_text == '機器人回報') {
-    $response_text = file_get_contents('report.txt', $get_text, FILE_APPEND);
-} elseif ($get_text != '機器人回報') {
+    $response_text = file_get_contents('report.txt');
+} else {
     file_put_contents('report.txt', $get_text, FILE_APPEND);
 }
 
