@@ -15,8 +15,9 @@ if ($get_text == '機器人回報!') {
     $textarr=explode('\n',$str);//切割每一筆留言
     foreach ($textarr as $key => $value) {
         file_put_contents('debug.txt', $value, FILE_APPEND);
+        $response = $bot->replyText($replytoken, $value);
     }
-    // $response = $bot->replyText($replytoken, $textarr);
+
     // file_put_contents('report.txt', '');
 } elseif (preg_match('/^[0-9]{0,2}\s.*/', $get_text,$matches)) {  //頭匹配符ex:兩個數字開頭加上一個空白
     file_put_contents('report.txt', $get_text, FILE_APPEND);
