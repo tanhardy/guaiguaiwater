@@ -24,12 +24,14 @@ if ($get_text == '機器人回報!') {
         $order[$value[0]] = $value[1];
     }
     foreach ($order as $key => $value) {
-        $value.="$key:$value\n";
+        $output.="$key:$value\n";
     }
-    $response = $bot->replyText($replytoken, $value);
+    $response = $bot->replyText($replytoken, $output);
 } elseif ($get_text == '回報囉') {
-    $value=json_encode($order);
-    $response = $bot->replyText($replytoken, $value);
+    foreach ($order as $key => $value) {
+        $output.="$key:$value\n";
+    }
+    $response = $bot->replyText($replytoken, $output);
 }
 elseif (preg_match('/^[0-9]{0,2}\s.*/', $get_text, $matches)) {  //頭匹配符ex:兩個數字開頭加上一個空白
     file_put_contents('report.txt', $get_text, FILE_APPEND);
