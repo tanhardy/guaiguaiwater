@@ -10,35 +10,24 @@ $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => 'ee39d46841657ce270c34
 $replytoken = $jsonobject->events[0]->replyToken;
 $get_text = $jsonobject->events[0]->message->text;
 
+$order = array();
+for ($i = 52; $i <= 69; ++$i) {
+    $order[$i] = '';
+}
 if ($get_text == '機器人回報!') {
     $manystr = file_get_contents('report.txt'); //一堆字
-    $sort_str = ajsort($manystr);
-    $response = $bot->replyText($replytoken, $sort_str);
-}
-elseif ($get_text == '回報囉') {
-    for ($i=52; $i < 70; $i++) {
-        $value.="$i:\n";
-    }
-    $response = $bot->replyText($replytoken, $value);
-}
-// elseif (preg_match('/^[0-9]{0,2}\s.*/', $get_text, $matches)) {  //頭匹配符ex:兩個數字開頭加上一個空白
-//     file_put_contents('report.txt', $get_text, FILE_APPEND);
-//     file_put_contents('report.txt', "\n", FILE_APPEND);
-// }
-function ajsort($str)
-{
-    $textarr = explode("\n", $str);
+    $textarr = explode("\n", $manystr);
     foreach ($textarr as $key => $value) {
         $newarr[] = explode(' ', $value);
-        $num = array();
-        foreach ($newarr as $key => $row) {
-            $num[$key] = $row[0];
-        }
     }
-    array_multisort($num, SORT_ASC, $newarr);
-    foreach ($newarr as $key => $row) {
-        $output .= "$row[0]:$row[1]\n";
+    foreach ($newarr as $key => $value) {
+        $order[$value[0]] = $value[1];
     }
-
-    return $output;
+    $response = $bot->replyText($replytoken, $order);
+} elseif ($get_text == '回報囉') {
+    $response = $bot->replyText($replytoken, $order);
+}
+elseif (preg_match('/^[0-9]{0,2}\s.*/', $get_text, $matches)) {  //頭匹配符ex:兩個數字開頭加上一個空白
+    file_put_contents('report.txt', $get_text, FILE_APPEND);
+    file_put_contents('report.txt', "\n", FILE_APPEND);
 }
