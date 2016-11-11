@@ -2,7 +2,7 @@
 
 $jsonstring = file_get_contents('php://input');
 $jsonobject = json_decode($jsonstring);
-file_put_contents('debug.txt', $jsonstring, FILE_APPEND);
+// file_put_contents('debug.txt', $jsonstring, FILE_APPEND);
 require './vendor/autoload.php';
 $token = getenv('token');
 $channelSecret = getenv('channelSecret');
