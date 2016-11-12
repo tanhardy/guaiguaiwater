@@ -22,7 +22,9 @@ if ($get_text == '機器人回報') {
         $newarr[] = explode(' ', $value);
     }
     foreach ($newarr as $key => $value) {
-        $order[$value[0]] = $value[1];
+        $num = $value[0];
+        $do = $value[1];
+        $order[$num] = $do;
     }
     foreach ($order as $key => $value) {
         $output .= "$key:$value\n";
