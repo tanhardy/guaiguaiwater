@@ -27,8 +27,8 @@ if ($get_text == '機器人回報') {
         $order[$num] = $do;
     }
     foreach ($order as $key => $value) {
-        if(is_null($num)||$num=""){
-            unset($order[$num]);
+        if(is_null($key)||$key=""){
+            unset($order[$key]);
         }
         $output .= "$key:$value\n";
     }
