@@ -24,13 +24,13 @@ if ($get_text == '機器人回報') {
     foreach ($newarr as $key => $value) {
         $num = $value[0];
         $do = $value[1];
-        $order[$num] = $do;
+        $order[$num]=$do;
     }
     foreach ($order as $key => $value) {
-        if(is_null($key)||$key=""){
+        if (is_null($key) || $key = '') {
             unset($order[$key]);
         }
-        $output .= "$key:$value\n";
+        $output="$key:$value\n";
     }
     $output .= '報告完畢';
     $response = $bot->replyText($replytoken, $output);
