@@ -20,7 +20,7 @@ if ($get_text == '機器人回報') {
     $manystr = file_get_contents('report.txt'); //一堆字
     $textarr = explode("\n", $manystr);
     foreach ($textarr as $key => $value) {
-        $newarr[] = explode(' ', $value);
+        $newarr[] = explode(PHP_EOL, $value);
     }
     foreach ($newarr as $key => $value) {
         $num = $value[0];
