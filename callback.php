@@ -25,9 +25,7 @@ if ($get_text == '機器人回報') {
     foreach ($newarr as $key => $value) {
         $num = $value[0];
         $do = $value[1];
-        if (!is_null($num) || $num != '') {
-            $order[$num] = $do;
-        }
+        $order[$num] = $do;
     }
     foreach ($order as $key => $value) {
         $output .= "$key:$value\n";
@@ -44,6 +42,5 @@ if ($get_text == '機器人回報') {
     file_put_contents('report.txt', '');
     $response = $bot->replyText($replytoken, '紀錄已經清除，請班長指示爾後之行動。');
 } elseif (preg_match('/^[0-9]{0,2}\s.*/', $get_text, $matches)) {  //頭匹配符ex:兩個數字開頭加上一個空白
-    file_put_contents('report.txt', $get_text, FILE_APPEND);
-    // file_put_contents('report.txt', "\n", FILE_APPEND);
+    file_put_contents('report.txt', $get_text . PHP_EOL, FILE_APPEND);
 }
