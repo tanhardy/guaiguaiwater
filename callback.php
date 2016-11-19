@@ -30,7 +30,7 @@ if ($get_text == '機器人回報') {
         if (is_null($key) || $key = '') {
             unset($order[$key]);
         }
-        $output="$key:$value\n";
+        $output.="$key:$value\n";
     }
     $output .= '報告完畢';
     $response = $bot->replyText($replytoken, $output);
