@@ -15,6 +15,7 @@ $order = array();
 for ($i = 52; $i <= 69; ++$i) {
     $order[$i] = '';
 }
+
 if ($get_text == '機器人回報') {
     $manystr = file_get_contents('report.txt'); //一堆字
     $textarr = explode("\n", $manystr);
@@ -44,5 +45,5 @@ if ($get_text == '機器人回報') {
     $response = $bot->replyText($replytoken, '紀錄已經清除，請班長指示爾後之行動。');
 } elseif (preg_match('/^[0-9]{0,2}\s.*/', $get_text, $matches)) {  //頭匹配符ex:兩個數字開頭加上一個空白
     file_put_contents('report.txt', $get_text, FILE_APPEND);
-    file_put_contents('report.txt', "\n", FILE_APPEND);
+    // file_put_contents('report.txt', "\n", FILE_APPEND);
 }
